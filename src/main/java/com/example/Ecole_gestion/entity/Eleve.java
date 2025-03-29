@@ -11,6 +11,7 @@ import lombok.Setter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Entity
 @AllArgsConstructor
@@ -32,11 +33,18 @@ public class Eleve {
     @OneToMany(mappedBy = "eleve",cascade = CascadeType.ALL,orphanRemoval = true)
     private List<Bulletin> bulletins = new ArrayList<>();
     @OneToMany
-    private List<Absence> presences = new ArrayList<>();
+    private List<Absence> absences = new ArrayList<>();
     @OneToMany
     private List<Note> notes = new ArrayList<>();
     @ManyToOne
     private Classe classe;
+    //methode pour definir le nombre d'absence
+    public int getNombreAbsences(){
+        if (absences==null){
+            return 0;
+        }
+        return (int) absences.stream().filter(absence -> absence.getEstAbsent()!=null && absence.getEstAbsent()).count();
+    }
 
     public Integer getEleveId() {
         return eleveId;
@@ -103,11 +111,11 @@ public class Eleve {
     }
 
     public List<Absence> getPresences() {
-        return presences;
+        return absences;
     }
 
     public void setPresences(List<Absence> presences) {
-        this.presences = presences;
+        this.absences = presences;
     }
 
     public List<Note> getNotes() {
@@ -125,4 +133,6 @@ public class Eleve {
     public void setClasse(Classe classe) {
         this.classe = classe;
     }
+
+
 }

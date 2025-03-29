@@ -42,7 +42,13 @@ public class EleveServiceImpl implements EleveService{
 
     @Override
     public List<Eleve> getAllEleve() {
-        return this.eleveRepo.findAll();
+
+        List<Eleve> eleves = this.eleveRepo.findAll();
+        //afficher le nombre d'absence de chaque eleve
+        for (Eleve eleve: eleves){
+            System.out.println("Eleve:"+ eleve.getNom()+",Nombres d'absence:"+eleve.getNombreAbsences());
+        }
+        return eleves;
     }
 
     @Override
@@ -55,11 +61,12 @@ public class EleveServiceImpl implements EleveService{
 
     @Override
     public EleveRespDTO getEleveById(Integer eleveId) {
-
+        // Récupérer l'élève par son ID
         Eleve eleve = eleveRepo.findById(eleveId)
-                .orElseThrow(()-> new RessourceNotFoundException("student not found!"));
+                .orElseThrow(() -> new RessourceNotFoundException("Student not found!"));
         return eleveMapper.toDto(eleve);
     }
+
 
     @Override
     public Eleve updateEleveById(Eleve eleve, Integer eleveId) {
