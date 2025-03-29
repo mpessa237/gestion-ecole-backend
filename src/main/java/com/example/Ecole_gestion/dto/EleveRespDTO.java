@@ -13,6 +13,16 @@ public class EleveRespDTO {
     private Date dateNaissance;
     private Integer classeId;
 
+    private int totalHeuresAbsences;
+
+    public int getTotalHeuresAbsences() {
+        return totalHeuresAbsences;
+    }
+
+    public void setTotalHeuresAbsences(int totalHeuresAbsences) {
+        this.totalHeuresAbsences = totalHeuresAbsences;
+    }
+
     public Integer getClasseId() {
         return classeId;
     }

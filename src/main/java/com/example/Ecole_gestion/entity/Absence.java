@@ -18,11 +18,20 @@ public class Absence {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer absenceId;
     private Boolean estAbsent;
+    private Integer heuresAbsences;
     private String justification;
     private Date dateAbsence;
     @ManyToOne
     @JoinColumn(name = "eleve_id")
     private Eleve eleve;
+
+    public Integer getHeuresAbsences() {
+        return heuresAbsences;
+    }
+
+    public void setHeuresAbsences(Integer heuresAbsences) {
+        this.heuresAbsences = heuresAbsences;
+    }
 
     public Integer getAbsenceId() {
         return absenceId;

@@ -8,9 +8,18 @@ import java.util.Date;
 public class AbsenceRespDTO {
     private Integer absenceId;
     private Boolean estAbsent;
+    private Integer heuresAbsences;
     private String justification;
     private Date dateAbsence;
     private Integer eleveId;
+
+    public Integer getHeuresAbsences() {
+        return heuresAbsences;
+    }
+
+    public void setHeuresAbsences(Integer heuresAbsences) {
+        this.heuresAbsences = heuresAbsences;
+    }
 
     public Integer getEleveId() {
         return eleveId;

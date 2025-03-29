@@ -34,6 +34,7 @@ public class EleveMapper {
         eleveRespDTO.setNom(eleve.getNom());
         eleveRespDTO.setPrenom(eleve.getPrenom());
         eleveRespDTO.setSexe(eleve.getSexe());
+        eleveRespDTO.setTotalHeuresAbsences(eleve.getTotalHeuresAbsences());
         eleveRespDTO.setDateNaissance(eleve.getDateNaissance());
 
         if (eleve.getClasse()!=null){

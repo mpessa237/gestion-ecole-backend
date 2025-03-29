@@ -55,6 +55,8 @@ public class AbsenceServiceImpl implements AbsenceService{
             absenceOptional.get().setDateAbsence(absence.getDateAbsence());
         if (absence.getEstAbsent()!=null)
             absenceOptional.get().setEstAbsent(absence.getEstAbsent());
+        if (absence.getHeuresAbsences()!=null)
+            absenceOptional.get().setHeuresAbsences(absence.getHeuresAbsences());
 
         return this.absenceRepo.saveAndFlush(absenceOptional.get());
     }

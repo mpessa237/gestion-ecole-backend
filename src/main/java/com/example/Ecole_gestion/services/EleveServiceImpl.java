@@ -64,8 +64,19 @@ public class EleveServiceImpl implements EleveService{
         // Récupérer l'élève par son ID
         Eleve eleve = eleveRepo.findById(eleveId)
                 .orElseThrow(() -> new RessourceNotFoundException("Student not found!"));
-        return eleveMapper.toDto(eleve);
+
+        // Calculer le total des heures d'absences
+        int totalHeuresAbsences = eleve.getTotalHeuresAbsences();
+
+        // Mapper l'élève en DTO (si tu utilises un mapper)
+        EleveRespDTO eleveRespDTO = eleveMapper.toDto(eleve);
+
+        // Ajouter le nombre total d'heures d'absences dans le DTO
+        eleveRespDTO.setTotalHeuresAbsences(totalHeuresAbsences);
+
+        return eleveRespDTO;
     }
+
 
 
     @Override

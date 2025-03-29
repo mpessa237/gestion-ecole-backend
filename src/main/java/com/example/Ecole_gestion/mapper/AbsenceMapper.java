@@ -15,6 +15,7 @@ public class AbsenceMapper {
 
         absence.setDateAbsence(absenceReqDTO.getDateAbsence());
         absence.setJustification(absenceReqDTO.getJustification());
+        absence.setHeuresAbsences(absenceReqDTO.getHeuresAbsences());
         absence.setEstAbsent(absenceReqDTO.getEstAbsent());
 
         if (absenceReqDTO.getEleveId()!=null){
@@ -29,6 +30,7 @@ public class AbsenceMapper {
         AbsenceRespDTO absenceRespDTO = new AbsenceRespDTO();
         absenceRespDTO.setAbsenceId(absence.getAbsenceId());
         absenceRespDTO.setDateAbsence(absence.getDateAbsence());
+        absenceRespDTO.setHeuresAbsences(absence.getHeuresAbsences());
         absenceRespDTO.setJustification(absence.getJustification());
         absenceRespDTO.setEstAbsent(absence.getEstAbsent());
 

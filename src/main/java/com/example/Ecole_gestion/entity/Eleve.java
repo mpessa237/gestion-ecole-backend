@@ -1,7 +1,5 @@
 package com.example.Ecole_gestion.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -38,6 +36,17 @@ public class Eleve {
     private List<Note> notes = new ArrayList<>();
     @ManyToOne
     private Classe classe;
+
+    public int getTotalHeuresAbsences() {
+        if (absences == null) {
+            return 0;
+        }
+
+        return absences.stream()
+                .filter(absence -> absence.getEstAbsent() != null && absence.getEstAbsent()) // Filtrer les absences où l'élève est absent
+                .mapToInt(absence -> absence.getHeuresAbsences() != null ? absence.getHeuresAbsences() : 0) // Prendre les heures d'absence ou 0 si null
+                .sum(); // Somme de toutes les heures d'absences
+    }
     //methode pour definir le nombre d'absence
     public int getNombreAbsences(){
         if (absences==null){
@@ -114,8 +123,8 @@ public class Eleve {
         return absences;
     }
 
-    public void setPresences(List<Absence> presences) {
-        this.absences = presences;
+    public void setAbsences(List<Absence> absences) {
+        this.absences = absences;
     }
 
     public List<Note> getNotes() {
@@ -133,6 +142,5 @@ public class Eleve {
     public void setClasse(Classe classe) {
         this.classe = classe;
     }
-
 
 }
